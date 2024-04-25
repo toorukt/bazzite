@@ -147,6 +147,7 @@ jobs:
           RCLONE_CONFIG_PIKPAK_TYPE: pikpak
           RCLONE_CONFIG_PIKPAK_USER: ${{ secrets.WEBDAV_USER }}
           RCLONE_CONFIG_PIKPAK_PASS: ${{ secrets.WEBDAV_PASS }}
+          RCLONE_CONFIG_PIKPAK_TOKEN: ${{ secrets.PIKPAK_TOKEN }}
           SOURCE_DIR: ${{ steps.upload-directory.outputs.iso-upload-dir }}
         run: |
           sudo apt-get update
