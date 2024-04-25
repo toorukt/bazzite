@@ -140,15 +140,16 @@ jobs:
           compression-level: 0
           overwrite: true
 
-      - name: Upload ISOs and Checksum to R2
+      - name: Upload ISOs
         if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
         shell: bash
         env:
-          RCLONE_CONFIG_ONEDRIVE_TYPE: onedrive
-          RCLONE_CONFIG_ONEDRIVE_TOKEN: ${{ secrets.ONEDRIVE_TOKEN }}
-          RCLONE_CONFIG_ONEDRIVE_DRIVE_TYPE: personal
+          RCLONE_CONFIG_WEBDAV_TYPE: webdav
+          RCLONE_CONFIG_WEBDAV_URL: ${{ secrets.WEBDAV_URL }}
+          RCLONE_CONFIG_WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
+          RCLONE_CONFIG_WEBDAV_PASS: ${{ secrets.WEBDAV_PASS }}
           SOURCE_DIR: ${{ steps.upload-directory.outputs.iso-upload-dir }}
         run: |
           sudo apt-get update
           sudo apt-get install -y rclone
-          rclone copy $SOURCE_DIR onedrive:/
+          rclone copy $SOURCE_DIR webdav:/
