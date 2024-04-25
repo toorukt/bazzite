@@ -144,10 +144,6 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
         shell: bash
         env:
-                - name: Upload ISOs and Checksum to R2
-        if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
-        shell: bash
-        env:
           RCLONE_CONFIG_PIKPAK_TYPE: pikpak
           RCLONE_CONFIG_PIKPAK_USER: ${{ secrets.WEBDAV_USER }}
           RCLONE_CONFIG_PIKPAK_PASS: ${{ secrets.WEBDAV_PASS }}
