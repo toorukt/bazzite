@@ -144,14 +144,11 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
         shell: bash
         env:
-          RCLONE_CONFIG_R2_TYPE: s3
-          RCLONE_CONFIG_R2_PROVIDER: Cloudflare
-          RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          RCLONE_CONFIG_R2_REGION: auto
-          RCLONE_CONFIG_R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          RCLONE_CONFIG_ONEDRIVE_TYPE: onedrive
+          RCLONE_CONFIG_ONEDRIVE_TOKEN: ${{ secrets.ONEDRIVE_TOKEN }}
+          RCLONE_CONFIG_ONEDRIVE_DRIVE_TYPE: personal
           SOURCE_DIR: ${{ steps.upload-directory.outputs.iso-upload-dir }}
         run: |
           sudo apt-get update
           sudo apt-get install -y rclone
-          rclone copy $SOURCE_DIR R2:bazzite
+          rclone copy $SOURCE_DIR onedrive:/
