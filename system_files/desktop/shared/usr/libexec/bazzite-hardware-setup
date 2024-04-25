@@ -77,7 +77,7 @@ elif [[ ":ROG Ally RC71L_RC71L:ROG Ally RC71L:" =~ ":$SYS_ID:" ]]; then
     echo "Adding SG Display for ASUS Ally"
     NEEDED_KARGS+=("--append-if-missing=amdgpu.sg_display=0")
   fi
-elif [[ ":G1617-01:" =~ ":$SYS_ID:" ]]; then
+elif [[ ":G1617-011:" =~ ":$SYS_ID:" ]]; then
   if [[ ! $KARGS =~ "video" ]]; then
     echo "Adding panel orientation for GPD Win Mini"
     NEEDED_KARGS+=("--append-if-missing=video=eDP-1:panel_orientation=right_side_up")
