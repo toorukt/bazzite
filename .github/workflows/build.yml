@@ -91,7 +91,27 @@ jobs:
               fi
           fi
 
-     
+      - name: Verify main image
+        uses: EyeCantCU/cosign-action/verify@v0.2.2
+        with:
+          containers: ${{ matrix.base_image_name }}-${{ matrix.base_image_flavor }}:${{ matrix.fedora_version }}
+          pubkey: https://raw.githubusercontent.com/ublue-os/${{ matrix.base_image_flavor }}/main/cosign.pub
+          registry: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Verify akmods image
+        uses: EyeCantCU/cosign-action/verify@v0.2.2
+        with:
+          containers: akmods:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
+          pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
+          registry: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Verify akmods-nvidia image
+        uses: EyeCantCU/cosign-action/verify@v0.2.2
+        with:
+          containers: akmods-nvidia:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
+          pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
+          registry: ${{ env.IMAGE_REGISTRY }}
+
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
@@ -165,9 +185,9 @@ jobs:
           command: |
             # pull the base images used for FROM in Containerfile so
             # we can retry on that unfortunately common failure case
-            podman pull ublue-os/${{ matrix.base_image_name }}-${{ matrix.base_image_flavor }}:${{ matrix.fedora_version }}
-            podman pull ublue-os/akmods:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
-            podman pull ublue-os/akmods-nvidia:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
+            podman pull ${{ env.IMAGE_REGISTRY }}/${{ matrix.base_image_name }}-${{ matrix.base_image_flavor }}:${{ matrix.fedora_version }}
+            podman pull ${{ env.IMAGE_REGISTRY }}/akmods:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
+            podman pull ${{ env.IMAGE_REGISTRY }}/akmods-nvidia:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
 
       - name: Get kernel version
         id: labels
