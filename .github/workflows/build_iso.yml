@@ -144,12 +144,11 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.ref_name == 'main'
         shell: bash
         env:
-          RCLONE_CONFIG_WEBDAV_TYPE: webdav
-          RCLONE_CONFIG_WEBDAV_URL: ${{ secrets.WEBDAV_URL }}
-          RCLONE_CONFIG_WEBDAV_USER: ${{ secrets.WEBDAV_USER }}
-          RCLONE_CONFIG_WEBDAV_PASS: ${{ secrets.WEBDAV_PASS }}
+          RCLONE_CONFIG_PIKPAK_TYPE: pikpak
+          RCLONE_CONFIG_PIKPAK_USER: ${{ secrets.WEBDAV_USER }}
+          RCLONE_CONFIG_PIKPAK_PASS: ${{ secrets.WEBDAV_PASS }}
           SOURCE_DIR: ${{ steps.upload-directory.outputs.iso-upload-dir }}
         run: |
           sudo apt-get update
           sudo apt-get install -y rclone
-          rclone copy $SOURCE_DIR webdav:/
+          rclone copy $SOURCE_DIR pikpak:/
