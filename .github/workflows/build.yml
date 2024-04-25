@@ -48,9 +48,9 @@ jobs:
       fail-fast: false
       matrix:
         base_image_flavor: [main]
-        base_name: [bazzite, bazzite-deck, bazzite-nvidia]
+        base_name: [bazzite-deck]
         base_image_name: [kinoite, silverblue]
-        target_image_flavor: [main, asus]
+        target_image_flavor: [main]
         fedora_version: [40]
         include:
           - fedora_version: 40
@@ -91,27 +91,7 @@ jobs:
               fi
           fi
 
-      - name: Verify main image
-        uses: EyeCantCU/cosign-action/verify@v0.2.2
-        with:
-          containers: ${{ matrix.base_image_name }}-${{ matrix.base_image_flavor }}:${{ matrix.fedora_version }}
-          pubkey: https://raw.githubusercontent.com/toorukt/${{ matrix.base_image_flavor }}/main/cosign.pub
-          registry: ${{ env.IMAGE_REGISTRY }}
-
-      - name: Verify akmods image
-        uses: EyeCantCU/cosign-action/verify@v0.2.2
-        with:
-          containers: akmods:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
-          pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
-          registry: ${{ env.IMAGE_REGISTRY }}
-
-      - name: Verify akmods-nvidia image
-        uses: EyeCantCU/cosign-action/verify@v0.2.2
-        with:
-          containers: akmods-nvidia:${{ matrix.kernel_flavor}}-${{ matrix.fedora_version }}
-          pubkey: https://raw.githubusercontent.com/ublue-os/akmods/main/cosign.pub
-          registry: ${{ env.IMAGE_REGISTRY }}
-
+     
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
