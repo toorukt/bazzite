@@ -17,7 +17,6 @@
 [*] [b]deck:[/b] Automatically hide HHD-UI desktop icon on Steam Deck hardware where it's not applicable. ([url=https://github.com/ublue-os/bazzite/commit/59e4c38ce8fb2446652283253007281d0d9e6dfa]59e4c38[/url])
 [*] [b]deck:[/b] End X11 support ([url=https://github.com/ublue-os/bazzite/commit/21e5f14fcffe0d38788a5cc9ec1c3b4efabc5044]21e5f14[/url])
 [*] [b]deck:[/b] Remove nested desktop support. This has been broken under GNOME since launch, and is now broken under KDE as of KDE6. ([url=https://github.com/ublue-os/bazzite/commit/3032dae4d77465acd3e7d93a4b4cdd53f027a9d6]3032dae[/url])
-[*] [b]deck:[/b] Use gamescope patched edid for SD OLED by default to work around HDR issues in KDE6. ([url=https://github.com/ublue-os/bazzite/commit/f3e9f68eb00ff59a213e48d223250bb1992aa70c]f3e9f68[/url])
 [*] [b]desktop:[/b] add an action to install ollama on a Bazzite system ([url=https://github.com/ublue-os/bazzite/issues/994]#994[/url]) ([url=https://github.com/ublue-os/bazzite/commit/2dba9b14e54ea94865fa60f2e6b5738e5c6563c8]2dba9b1[/url])
 [*] [b]gnome:[/b] Add patched mutter with triple buffering and nvidia secondary gpu copy acceleration ([url=https://github.com/ublue-os/bazzite/commit/4889453f1648192017e0430b640a9f2b6b40ccb7]4889453[/url])
 [*] Include zoxide by default ([url=https://github.com/ublue-os/bazzite/commit/8ae44a7b63d9461b10fa2d6f3d61c20054db4dff]8ae44a7[/url])
