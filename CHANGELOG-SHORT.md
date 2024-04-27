@@ -5,7 +5,6 @@
 
 ### Features
 
-
 * Upgrade to Fedora 40 base
 * add bazzite-rollback-helper util ([#1002](https://github.com/ublue-os/bazzite/issues/1002)) ([1d146d6](https://github.com/ublue-os/bazzite/commit/1d146d6bbc7ce57bac7fef9b8b0734af07641f1f))
 * add command to support rebasing ([#989](https://github.com/ublue-os/bazzite/issues/989)) ([c96bc6f](https://github.com/ublue-os/bazzite/commit/c96bc6fb6985365d569f1f157b8d640c45607779))
